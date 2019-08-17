@@ -240,3 +240,16 @@ for($i = 0; $i < $worker_num; $i++){
   	echo "子进程退出" . $pid . PHP_EOL;
 }
 
+
+// 信号
+use Swoole\Process;
+Process::signal(SIGALRM, function () {
+    static $i = 0;
+    echo "#{$i}\talarm\n";
+    $i++;
+    if ($i > 20) {
+        Process::alarm(-1);
+    }
+});
+//100ms
+Process::alarm(100 * 1000);
