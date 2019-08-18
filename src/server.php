@@ -143,6 +143,7 @@ $ws->on('message', function($ws, $frame){
 	// echo "Message:" . $request->data;
 	$ws->push($frame->fd, "测试");
 });
+
 $ws->on('close', function(){
 	echo "close\n";
 });
